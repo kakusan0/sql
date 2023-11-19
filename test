@@ -1,0 +1,18 @@
+DELIMITER //
+
+CREATE PROCEDURE CountPosts(IN test INT , OUT test1 varchar(10))
+BEGIN
+    DECLARE test INT DEFAULT 0;
+    SELECT COUNT(*) INTO test FROM post;
+
+    IF test <= 10 THEN
+        SELECT a.PrefectureJapanese into test1 FROM post a;
+    END IF;
+END //
+
+DELIMITER ;
+
+CALL CountPosts(10, @test1);
+DROP PROCEDURE IF EXISTS CountPosts;
+select @test1;
+SELECT a.PrefectureJapanese from post a;
